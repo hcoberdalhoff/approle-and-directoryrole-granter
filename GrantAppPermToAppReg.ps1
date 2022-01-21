@@ -54,7 +54,7 @@ if ($updateEnterpriseApp) {
     $entApp = Get-MgServicePrincipal -Filter "AppId eq '$((Get-MgApplication -ApplicationId $appRegObjectId).AppId)'"
 
     ## Granting the permission to the managed/linked enterprise app
-    . .\GrantAppPermToEntApp.ps1 -enterpriseAppObjId $entApp.Id -permissionsTemplate $permissionsTemplate
+    . $PSScriptRoot\GrantAppPermToEntApp.ps1 -enterpriseAppObjId $entApp.Id -permissionsTemplate $permissionsTemplate
 }
 else {
     ## Option 2 - Grant new permissions manually:
