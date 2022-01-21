@@ -7,7 +7,8 @@ param(
     # Please give the managed identities AzureAD object id. 
     [Parameter(Mandatory = $true)]
     [string] $objectId,
-    [string] $rolesTemplate = "RealmJoinVnext\RjvNextRoles.json"
+    [string] $rolesTemplate = "RealmJoinVnext\RjvNextRoles.json",
+    [switch] $disconnectAfterExecution = $false
 )
 
 ## Authenticate as admin (delegated). Use MS Graph PowerShell SDK to leverage existing (well known) clientId/app.
@@ -29,3 +30,6 @@ $targetRoles | ForEach-Object {
     New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($directoryRoles[$_]) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } 
 }
 
+if ($disconnectAfterExecution) {
+    Disconnect-MgGraph
+}

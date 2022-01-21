@@ -9,7 +9,8 @@ param(
      # Please give the managed identity's or enterprise app's object id.  
     [Parameter(Mandatory = $true)]
     [string] $enterpriseAppObjId,
-    [string] $permissionsTemplate = "RealmJoinVnext\RjvNextPermissions.json"
+    [string] $permissionsTemplate = "RealmJoinVnext\RjvNextPermissions.json",
+    [switch] $disconnectAfterExecution = $false
 )
 
 ## Authenticate as admin (delegated). Use MS Graph PowerShell SDK to leverage existing (well known) clientId/app.
@@ -40,4 +41,6 @@ $permissions | ForEach-Object {
     }
 }
 
-
+if ($disconnectAfterExecution) {
+    Disconnect-MgGraph
+}

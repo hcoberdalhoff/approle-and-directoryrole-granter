@@ -8,17 +8,14 @@ Mass-Grant MS Graph and AzureAD permissions to App Registrations, Enterprise App
 
 Get the AzureAD object id of the AppRegistration belonging to the RunAs Account (e.g. `a489c529-c750-4100-91e4-c4cbeee96143`).
 
-Use the existing sample files in `RealmJoinVnext` without change. We keep those up2date in this repo :)
-
 ```powershell
-. .\GrantAppPermToAppReg.ps1 -appRegObjectId "a489c529-c750-4100-91e4-c4cbeee96143" -permissionsTemplate .\RealmJoinVnext\RJvNextPermissions.json
-
-. .\AssignAzureADRoleToEntApp.ps1 -objectId "a489c529-c750-4100-91e4-c4cbeee96143" -rolesTemplate .\RealmJoinVnext\RJvNextRoles.json
+cd RealmJoinVnext
+. .\AllInOne.ps1 -appRegObjectId "a489c529-c750-4100-91e4-c4cbeee96143" 
 ``` 
 
-This will open a browser to let a GA (or similiar admin) sign in and grant access to the Microsoft Graph Powershell. As we use multiple scripts with each requesting only minimal access, the admin will have to grant in total three times.
+This will open a browser to let a GA (or similiar admin) sign in and grant access to the Microsoft Graph Powershell. 
 
-You can reapply these permissions at any time; for example if new permissions were added to the JSON file.
+You can reapply these permissions at any time; for example if new permissions were added to the JSON files.
 
 ## Generic Examples
 

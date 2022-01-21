@@ -7,7 +7,9 @@ param(
     # Please give the app registration's object id. 
     [Parameter(Mandatory = $true)]
     [string] $appRegObjectId,
-    [string] $permissionsTemplate = "RealmJoinVnext\RjvNextPermissions.json"
+    [string] $permissionsTemplate = "RealmJoinVnext\RjvNextPermissions.json",
+    [switch] $updateEnterpriseApp = $false,
+    [switch] $disconnectAfterExecution = $false
 )
 
 ## Authenticate as admin (delegated). Use MS Graph PowerShell SDK to leverage existing (well known) clientId/app.
@@ -34,7 +36,7 @@ $permissions | ForEach-Object {
     }
 
     $requiredResourceAccessItem = @{
-        "resourceAppId" = $appId
+        "resourceAppId"  = $appId
         "resourceAccess" = [array]($_.AppRoleAssignments | ForEach-Object { @{"Id" = $appRoles[$_]; "Type" = "Role" } } )
     }
 
@@ -46,17 +48,26 @@ $permissions | ForEach-Object {
 Update-MgApplication -ApplicationId $appRegObjectId -RequiredResourceAccess $requiredResourceAccess
 ""
 
-## Option 1 - Grant new permissions manually:
-#"## Wating 30 sec. AzureAD needs a moment tp update the permissions..."
-#Start-Sleep 30
-#""
-#"## Please visit the follwing URL to grant the updated permissions. It is ok if this shows a 'No reply address is registered for the application' error."
-#"https://login.microsoftonline.com/$((Get-MgContext).TenantId)/adminconsent?client_id=$((Get-MgApplication -ApplicationId $appRegObjectId).AppId)"
+if ($updateEnterpriseApp) {
+    ## Option 1 - Use Graph on the linked enterprise app to grant.
+    ## Get linked enterprise app
+    $entApp = Get-MgServicePrincipal -Filter "AppId eq '$((Get-MgApplication -ApplicationId $appRegObjectId).AppId)'"
 
+    ## Granting the permission to the managed/linked enterprise app
+    . .\GrantAppPermToEntApp.ps1 -enterpriseAppObjId $entApp.Id -permissionsTemplate $permissionsTemplate
+}
+else {
+    ## Option 2 - Grant new permissions manually:
+    #"## Wating 30 sec. AzureAD needs a moment tp update the permissions..."
+    #Start-Sleep 30
+    #""
+    "## To enable the new permissions, please wait some seconds and visit the follwing URL to grant the updated permissions."
+    ""
+    "https://login.microsoftonline.com/$((Get-MgContext).TenantId)/adminconsent?client_id=$((Get-MgApplication -ApplicationId $appRegObjectId).AppId)"
+    ""
+    "It is ok if this shows a 'No reply address is registered for the application' error."
+}
 
-## Option 2 - Use Graph on the linked enterprise app to grant.
-## Get linked enterprise app
-$entApp = Get-MgServicePrincipal -Filter "AppId eq '$((Get-MgApplication -ApplicationId $appRegObjectId).AppId)'"
-
-## Granting the permission to the managed/linked enterprise app
-. .\GrantAppPermToEntApp.ps1 -enterpriseAppObjId $entApp.Id -permissionsTemplate $permissionsTemplate
+if ($disconnectAfterExecution) {
+    Disconnect-MgGraph
+}
