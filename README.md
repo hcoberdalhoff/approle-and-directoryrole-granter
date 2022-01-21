@@ -1,6 +1,8 @@
 # AppRole and DirectoryRole Granter
 
-Mass-Grant MS Graph and AzureAD permissions to App Registrations, Enterprise Apps and Mgd. Identities
+Mass-Grant MS Graph and AzureAD permissions to App Registrations, Enterprise Apps and Mgd. Identities.
+
+You don't need the legacy AzureAD / AzureADPreview modules. These scripts use Microsoft's Graph PowerShell SDK. 
 
 ## RealmJoin vNext 
 
