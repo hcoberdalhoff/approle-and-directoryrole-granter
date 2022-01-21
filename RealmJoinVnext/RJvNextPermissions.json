@@ -1,0 +1,29 @@
+[
+    {
+        "Name": "Microsoft Graph",
+        "Id": "00000003-0000-0000-c000-000000000000",
+        "AppRoleAssignments": [
+            "AuditLog.Read.All",
+            "Device.Read.All",
+            "DeviceManagementConfiguration.ReadWrite.All",
+            "DeviceManagementManagedDevices.PrivilegedOperations.All",
+            "DeviceManagementManagedDevices.ReadWrite.All",
+            "DeviceManagementServiceConfig.ReadWrite.All",
+            "Directory.ReadWrite.All",
+            "Group.ReadWrite.All",
+            "IdentityRiskyUser.ReadWrite.All",
+            "InformationProtectionPolicy.Read.All",
+            "Policy.Read.All",
+            "Team.Create",
+            "User.ReadWrite.All",
+            "UserAuthenticationMethod.ReadWrite.All"
+        ]
+    },
+    {
+        "Name": "Office 365 Exchange Online",
+        "Id": "00000002-0000-0ff1-ce00-000000000000",
+        "AppRoleAssignments": [
+            "Exchange.ManageAsApp"
+        ]
+    }
+]
