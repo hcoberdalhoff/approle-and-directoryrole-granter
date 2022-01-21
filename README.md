@@ -17,7 +17,7 @@ cd RealmJoinVnext
 
 This will open a browser to let a GA (or similiar admin) sign in and grant access to the Microsoft Graph Powershell. 
 
-You can reapply these permissions at any time; for example if new permissions were added to the JSON files. Existing permissions will create (non-terminating) errors. You can ignore those.
+You can reapply these permissions at any time; for example if new permissions were added to the JSON files. Existing permissions will create (non-terminating) errors. You can ignore those. Currently, existing additional roles and permissions are not removed by this script.
 
 ## Generic Examples
 
