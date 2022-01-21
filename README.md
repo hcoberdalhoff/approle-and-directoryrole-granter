@@ -42,7 +42,7 @@ Get the AzureAD object id of the Mgd. Identity / Service Principal (e.g. `a489c5
 Prepare a JSON file `graphpermissions.json` containing the AppRole Names you want to assign. See [RealmJoin vNext Runbook permissions](RealmJoinVnext/RJvNextPermissions.json) as an example.
 
 ```powershell
-. . .\GrantAppPermToEntApp.ps1 -enterpriseAppObjId "a489c529-c750-4100-91e4-c4cbeee96143" -permissionsTemplate .\graphpermissions.json
+. .\GrantAppPermToEntApp.ps1 -enterpriseAppObjId "a489c529-c750-4100-91e4-c4cbeee96143" -permissionsTemplate .\graphpermissions.json
 ``` 
 
 This will open a browser to let a GA (or similiar admin) sign in.
