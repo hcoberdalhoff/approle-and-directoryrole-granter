@@ -27,7 +27,7 @@ Get-MgDirectoryRole | ForEach-Object {
 
 ## Add 
 $targetRoles | ForEach-Object {
-    New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($directoryRoles[$_]) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } 
+    New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($directoryRoles[$_]) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } -ErrorAction SilentlyContinue
 }
 
 if ($disconnectAfterExecution) {

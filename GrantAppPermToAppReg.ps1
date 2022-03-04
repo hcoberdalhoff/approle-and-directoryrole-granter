@@ -45,7 +45,7 @@ $permissions | ForEach-Object {
 }
 ""
 "## Setting new permissions on the App Registration..."
-Update-MgApplication -ApplicationId $appRegObjectId -RequiredResourceAccess $requiredResourceAccess
+Update-MgApplication -ApplicationId $appRegObjectId -RequiredResourceAccess $requiredResourceAccess -ErrorAction SilentlyContinue
 ""
 
 if ($updateEnterpriseApp) {
