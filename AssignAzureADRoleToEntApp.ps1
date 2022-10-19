@@ -18,16 +18,33 @@ Connect-MgGraph -Scopes "RoleManagement.ReadWrite.Directory"
 
 ## Read the roles template
 $targetRoles = Get-Content -Path $rolesTemplate | ConvertFrom-Json
+$allRoles = Get-MgDirectoryRole
+$allRoleTemplates = Get-MgDirectoryRoleTemplate
 
-## Get all AzureAD roles. Create a hashtable giving "DisplayName -> Id"
-$directoryRoles = @{}
-Get-MgDirectoryRole | ForEach-Object {
-    $directoryRoles.add($_.DisplayName, $_.Id)
-}
-
-## Add 
+## Check if all roles already exist. Create them if needed.
 $targetRoles | ForEach-Object {
-    New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($directoryRoles[$_]) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } -ErrorAction SilentlyContinue
+    $roleDisplayName = $_
+    $adminRole = $allRoles | Where-Object { $_.DisplayName -eq $roleDisplayName }
+    if (-not $adminRole) {
+        "Role '$roleDisplayName' not found (yet). Activating role from template..." 
+        # Find Role Template...
+        $roleTemplate = $allRoleTemplates | Where-Object { $_.DisplayName -eq $roleDisplayName }
+        if (-not $roleTemplate) {
+            throw "RoleTemplate '$roleDisplayName not found!"
+        }
+        $adminRole = New-MgDirectoryRole -RoleTemplateId $roleTemplate.Id
+    } else {
+        $adminRole = $allRoles | Where-Object { $_.DisplayName -eq $roleDisplayName }
+        "Role '$roleDisplayName' found. ID: $($adminRole.Id)"
+    }
+
+    # Add principal to role
+    if ($adminRole) {
+        "Adding member '$objectId' to '$roleDisplayName'"
+        $result = New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($adminRole.Id) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } -ErrorAction SilentlyContinue
+    } else {
+        throw "AdminRole '$roleDisplayName' not found!"
+    }
 }
 
 if ($disconnectAfterExecution) {
