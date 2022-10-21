@@ -37,7 +37,8 @@ $permissions | ForEach-Object {
 
     ## Apply each permission to the Ent App/Mgd. Identity
     $_.AppRoleAssignments | ForEach-Object {
-        New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $enterpriseAppObjId -AppRoleId $appRoles[$_] -ResourceId $resourceId -PrincipalId $enterpriseAppObjId -ErrorAction SilentlyContinue
+        # TODO - Error handling
+        New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $enterpriseAppObjId -AppRoleId $appRoles[$_] -ResourceId $resourceId -PrincipalId $enterpriseAppObjId 
     }
 }
 
