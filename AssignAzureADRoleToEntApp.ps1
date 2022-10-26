@@ -26,27 +26,34 @@ $targetRoles | ForEach-Object {
     $roleDisplayName = $_
     $adminRole = $allRoles | Where-Object { $_.DisplayName -eq $roleDisplayName }
     if (-not $adminRole) {
-        "Role '$roleDisplayName' not found (yet). Activating role from template..." 
+        "## Role '$roleDisplayName' not found (yet). Activating role from template..." 
         # Find Role Template...
         $roleTemplate = $allRoleTemplates | Where-Object { $_.DisplayName -eq $roleDisplayName }
         if (-not $roleTemplate) {
             throw "RoleTemplate '$roleDisplayName not found!"
         }
         $adminRole = New-MgDirectoryRole -RoleTemplateId $roleTemplate.Id
-    } else {
+    }
+    else {
         $adminRole = $allRoles | Where-Object { $_.DisplayName -eq $roleDisplayName }
-        "Role '$roleDisplayName' found. ID: $($adminRole.Id)"
+        "## Role '$roleDisplayName' found. ID: $($adminRole.Id)"
     }
 
     # Add principal to role
     if ($adminRole) {
-        "Adding member '$objectId' to '$roleDisplayName'"
-        $result = New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($adminRole.Id) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } -ErrorAction SilentlyContinue
-    } else {
-        throw "AdminRole '$roleDisplayName' not found!"
+        "## Adding member '$objectId' to '$roleDisplayName'"
+        try {
+            New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($adminRole.Id) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } -ErrorAction Stop
+        }
+        catch {
+            "## - Role already assigned or assignment failed. Skipping..."
+        }
+    }
+    else {
+        throw "## AdminRole '$roleDisplayName' not found!"
     }
 }
 
 if ($disconnectAfterExecution) {
-    Disconnect-MgGraph
+    Disconnect-MgGraph | Out-Null
 }

@@ -27,11 +27,10 @@ $permissions | ForEach-Object {
 
     ## Get Service Principal from Application:
     $resourceApp = Get-MgServicePrincipal -Filter "AppId eq '$appId'" 
-    $resourceId = $resourceApp.Id
 
     ## Get all AppRoles. Create a hashtable giving "Claim -> AppRoleId"
     $appRoles = @{}
-    (Get-MgServicePrincipal -ServicePrincipalId $resourceId).AppRoles | ForEach-Object {
+    $resourceApp.AppRoles | ForEach-Object {
         $appRoles.add($_.Value, $_.Id)
     }
 
@@ -45,7 +44,13 @@ $permissions | ForEach-Object {
 }
 ""
 "## Setting new permissions on the App Registration..."
-Update-MgApplication -ApplicationId $appRegObjectId -RequiredResourceAccess $requiredResourceAccess -ErrorAction SilentlyContinue
+try {
+    Update-MgApplication -ApplicationId $appRegObjectId -RequiredResourceAccess $requiredResourceAccess -ErrorAction Stop
+}
+catch {
+    "## - Assignment failed."
+    $_
+}
 ""
 
 if ($updateEnterpriseApp) {
@@ -69,5 +74,5 @@ else {
 }
 
 if ($disconnectAfterExecution) {
-    Disconnect-MgGraph
+    Disconnect-MgGraph | Out-Null
 }

@@ -6,7 +6,7 @@
 #Requires -modules Microsoft.Graph.Applications,Microsoft.Graph.Authentication
 
 param(
-     # Please give the managed identity's or enterprise app's object id.  
+    # Please give the managed identity's or enterprise app's object id.  
     [Parameter(Mandatory = $true)]
     [string] $enterpriseAppObjId,
     [string] $permissionsTemplate = "RealmJoinVnext\RjvNextPermissions.json",
@@ -31,17 +31,22 @@ $permissions | ForEach-Object {
 
     ## Get all AppRoles. Create a hashtable giving "Claim -> AppRoleId"
     $appRoles = @{}
-    (Get-MgServicePrincipal -ServicePrincipalId $resourceId).AppRoles | ForEach-Object {
+    $resourceApp.AppRoles | ForEach-Object {
         $appRoles.add($_.Value, $_.Id)
     }
 
     ## Apply each permission to the Ent App/Mgd. Identity
     $_.AppRoleAssignments | ForEach-Object {
-        # TODO - Error handling
-        New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $enterpriseAppObjId -AppRoleId $appRoles[$_] -ResourceId $resourceId -PrincipalId $enterpriseAppObjId 
+        "## Assigning $($resourceApp.DisplayName):$_"
+        try {
+            New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $enterpriseAppObjId -AppRoleId $appRoles[$_] -ResourceId $resourceId -PrincipalId $enterpriseAppObjId -ErrorAction Stop | Out-Null
+        }
+        catch {
+            "## - Permission already assigned or assignment failed. Skipping..."
+        }
     }
 }
 
 if ($disconnectAfterExecution) {
-    Disconnect-MgGraph
+    Disconnect-MgGraph | Out-Null
 }
