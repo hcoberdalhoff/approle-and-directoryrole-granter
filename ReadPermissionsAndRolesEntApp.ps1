@@ -26,17 +26,22 @@ $permissions = @()
 
 # Read Permissions from Enterprise App
 $appRoles = Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $enterpriseAppObjId
+
+
+
 $appRoles | Group-Object -Property 'ResourceId' | ForEach-Object {
     $permissionDescription = @{}
-    $permissionDescription["Id"] = $_.Name
     $permissionDescription["Name"] = $_.Group[0].ResourceDisplayName
     $resource = Get-MgServicePrincipal -ServicePrincipalId $_.Group[0].ResourceId
+    $permissionDescription["Id"] = $resource.AppId
+
     $appRoleNames = @()
     $_.Group | ForEach-Object {
         $AppRoleId = $_.AppRoleId
         $appRoleNames += ($resource.AppRoles | Where-Object { $_.Id -eq $AppRoleId }).Value
     }
     $permissionDescription["AppRoleAssignments"] = $appRoleNames
+    
     $permissions += $permissionDescription
 }
 
