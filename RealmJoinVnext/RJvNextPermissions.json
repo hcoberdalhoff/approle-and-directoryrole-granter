@@ -18,7 +18,8 @@
             "Team.Create",
             "User.ReadWrite.All",
             "UserAuthenticationMethod.ReadWrite.All",
-            "Reports.Read.All"
+            "Reports.Read.All",
+            "Place.Read.All"
         ]
     },
     {
