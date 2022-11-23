@@ -19,7 +19,8 @@
             "User.ReadWrite.All",
             "UserAuthenticationMethod.ReadWrite.All",
             "Reports.Read.All",
-            "Place.Read.All"
+            "Place.Read.All",
+            "Mail.Send"
         ]
     },
     {
