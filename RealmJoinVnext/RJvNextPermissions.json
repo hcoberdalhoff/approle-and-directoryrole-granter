@@ -38,5 +38,14 @@
             "Machine.Isolate",
             "Machine.RestrictExecution"
         ]
+    },
+    {
+        "Id": "00000003-0000-0ff1-ce00-000000000000",
+        "Name": "Office 365 SharePoint Online",
+        "AppRoleAssignments": [
+            "User.Read.All",
+            "Sites.Read.All",
+            "Sites.FullControl.All"
+        ]
     }
 ]
