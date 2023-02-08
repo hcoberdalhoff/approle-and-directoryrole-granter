@@ -4,7 +4,7 @@
         "Id": "00000003-0000-0000-c000-000000000000",
         "AppRoleAssignments": [
             "AuditLog.Read.All",
-            "CloudPC.Read.All",
+            "CloudPC.ReadWrite.All",
             "Device.Read.All",
             "DeviceManagementConfiguration.ReadWrite.All",
             "DeviceManagementManagedDevices.PrivilegedOperations.All",
