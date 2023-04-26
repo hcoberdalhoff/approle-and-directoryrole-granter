@@ -3,8 +3,12 @@
         "Name": "Microsoft Graph",
         "Id": "00000003-0000-0000-c000-000000000000",
         "AppRoleAssignments": [
+            "AppCatalog.ReadWrite.All",
             "Application.ReadWrite.All",
             "AuditLog.Read.All",
+            "Channel.Delete.All",
+            "ChannelMember.ReadWrite.All",
+            "ChannelSettings.ReadWrite.All",
             "CloudPC.ReadWrite.All",
             "Device.Read.All",
             "DeviceManagementConfiguration.ReadWrite.All",
@@ -15,14 +19,16 @@
             "Group.ReadWrite.All",
             "IdentityRiskyUser.ReadWrite.All",
             "InformationProtectionPolicy.Read.All",
+            "Mail.Send",
+            "Organization.Read.All",
+            "Place.Read.All",
             "Policy.Read.All",
+            "Reports.Read.All",
             "RoleManagement.Read.All",
             "Team.Create",
+            "TeamSettings.ReadWrite.All",
             "User.ReadWrite.All",
-            "UserAuthenticationMethod.ReadWrite.All",
-            "Reports.Read.All",
-            "Place.Read.All",
-            "Mail.Send"
+            "UserAuthenticationMethod.ReadWrite.All"
         ]
     },
     {
