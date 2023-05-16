@@ -1,0 +1,15 @@
+[
+    {
+        "Name": "Microsoft Graph",
+        "Id": "00000003-0000-0000-c000-000000000000",
+        "Oauth2PermissionGrant": [
+            "Application.ReadWrite.All",
+            "DeviceManagementConfiguration.ReadWrite.All",
+            "Group.ReadWrite.All",
+            "Organization.Read.All",
+            "Policy.Read.All",
+            "Policy.ReadWrite.ConditionalAccess",
+            "User.ReadWrite.All"
+        ]
+    }
+]
