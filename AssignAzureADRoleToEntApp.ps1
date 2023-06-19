@@ -8,7 +8,8 @@ param(
     [Parameter(Mandatory = $true)]
     [string] $objectId,
     [string] $rolesTemplate = "RealmJoinVnext\RjvNextRoles.json",
-    [switch] $disconnectAfterExecution = $false
+    [switch] $disconnectAfterExecution = $false,
+    [switch] $showErrors = $false
 )
 
 ## Authenticate as admin (delegated). Use MS Graph PowerShell SDK to leverage existing (well known) clientId/app.
@@ -47,6 +48,9 @@ $targetRoles | ForEach-Object {
         }
         catch {
             "## - Role already assigned or assignment failed. Skipping..."
+            if ($showErrors) {
+                $_
+            }
         }
     }
     else {

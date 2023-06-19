@@ -10,7 +10,8 @@ param(
     [Parameter(Mandatory = $true)]
     [string] $enterpriseAppObjId,
     [string] $permissionsTemplate = "RealmJoinVnext\RjvNextPermissions.json",
-    [switch] $disconnectAfterExecution = $false
+    [switch] $disconnectAfterExecution = $false,
+    [switch] $showErrors = $false
 )
 
 ## Authenticate as admin (delegated). Use MS Graph PowerShell SDK to leverage existing (well known) clientId/app.
@@ -43,6 +44,9 @@ $permissions | ForEach-Object {
         }
         catch {
             "## - Permission already assigned or assignment failed. Skipping..."
+            if ($showErrors) {
+                $_
+            }
         }
     }
 }
