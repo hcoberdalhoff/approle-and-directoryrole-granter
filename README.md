@@ -4,6 +4,19 @@ Mass-Grant MS Graph and AzureAD permissions to App Registrations, Enterprise App
 
 You don't need the legacy AzureAD / AzureADPreview modules. These scripts use Microsoft's Graph PowerShell SDK. 
 
+## Known issues
+
+### Connect-MGGraph authenticates every time
+
+This is a [known issue](https://github.com/microsoftgraph/msgraph-sdk-powershell#known-issues) of the Microsoft Graph PowerShell SDK.
+
+Either clean up the token cache:
+- Use `Disconnect-MgGraph` to sign out of the current session.
+- Run `Remove-Item "$env:USERPROFILE\.graph -Recurse -Force` to delete your token cache.
+- Run `Connect-MgGraph` to reconstruct a clean token cache.
+
+If you run commands manually, you can use `Connect-MgGraph -ContextScope Process` to avoid using the cache.
+
 ## RealmJoin vNext 
 
 ### Prepare an Azure Automation Account for RJ vNext
