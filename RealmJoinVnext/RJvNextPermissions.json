@@ -44,7 +44,8 @@
         "AppRoleAssignments": [
             "Machine.Read.All",
             "Machine.Isolate",
-            "Machine.RestrictExecution"
+            "Machine.RestrictExecution",
+            "Ti.ReadWrite.All"
         ]
     },
     {
