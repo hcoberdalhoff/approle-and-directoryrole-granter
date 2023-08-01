@@ -21,7 +21,6 @@ if ((Get-Module -Name Microsoft.Graph.Applications -ListAvailable) -and (Get-Mod
 }
 
 # Do the login now with all scopes. This will prevent asking for multiple grants.
-Select-MgProfile -Name "v1.0"
 Connect-MgGraph -Scopes "RoleManagement.ReadWrite.Directory,Application.ReadWrite.All,AppRoleAssignment.ReadWrite.All,Application.Read.All"
 
 ## Get linked enterprise app

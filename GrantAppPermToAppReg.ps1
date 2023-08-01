@@ -15,7 +15,6 @@ param(
 
 ## Authenticate as admin (delegated). Use MS Graph PowerShell SDK to leverage existing (well known) clientId/app.
 ## Will sign you in using your browser and ask for granting permissions if needed.
-Select-MgProfile -Name "v1.0"
 Connect-MgGraph -Scopes "Application.ReadWrite.All" 
 
 ## Read the permission template

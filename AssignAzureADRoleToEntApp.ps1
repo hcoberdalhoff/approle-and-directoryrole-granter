@@ -14,7 +14,6 @@ param(
 
 ## Authenticate as admin (delegated). Use MS Graph PowerShell SDK to leverage existing (well known) clientId/app.
 ## Will sign you in using your browser and ask for granting permissions if needed.
-Select-MgProfile -Name "v1.0"
 Connect-MgGraph -Scopes "RoleManagement.ReadWrite.Directory"
 
 ## Read the roles template
@@ -44,7 +43,7 @@ $targetRoles | ForEach-Object {
     if ($adminRole) {
         "## Adding member '$objectId' to '$roleDisplayName'"
         try {
-            New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($adminRole.Id) -AdditionalProperties @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" } -ErrorAction Stop
+            New-MgDirectoryRoleMemberByRef -DirectoryRoleId ($adminRole.Id) -OdataId "https://graph.microsoft.com/v1.0/directoryObjects/$objectId" -ErrorAction Stop
         }
         catch {
             "## - Role already assigned or assignment failed. Skipping..."
