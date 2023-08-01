@@ -19,13 +19,13 @@ If you run commands manually, you can use `Connect-MgGraph -ContextScope Process
 
 ## RealmJoin vNext 
 
-### Prepare an Azure Automation Account for RJ vNext
+### Prepare an Azure Automation Account (Managed Identity) for RJ vNext
 
-Get the AzureAD object id of the AppRegistration belonging to the RunAs Account (e.g. `a489c529-c750-4100-91e4-c4cbeee96143`).
+Get the AzureAD object id of the Managed Identity belonging to Automation Account (e.g. `a489c529-c750-4100-91e4-c4cbeee96143`).
 
 ```powershell
 cd RealmJoinVnext
-. .\AllInOne.ps1 -appRegObjectId "a489c529-c750-4100-91e4-c4cbeee96143" 
+. .\AllInOneMangedId.ps1 -entAppObjectId "a489c529-c750-4100-91e4-c4cbeee96143" 
 ``` 
 
 This will open a browser to let a GA (or similiar admin) sign in and grant access to the Microsoft Graph Powershell. 
