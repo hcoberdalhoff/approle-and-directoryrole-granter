@@ -25,7 +25,7 @@ Get the AzureAD object id of the Managed Identity belonging to Automation Accoun
 
 ```powershell
 cd RealmJoinVnext
-. .\AllInOneMangedId.ps1 -entAppObjectId "a489c529-c750-4100-91e4-c4cbeee96143" 
+. .\AllInOneManagedId.ps1 -entAppObjectId "a489c529-c750-4100-91e4-c4cbeee96143" 
 ``` 
 
 This will open a browser to let a GA (or similiar admin) sign in and grant access to the Microsoft Graph Powershell. 
