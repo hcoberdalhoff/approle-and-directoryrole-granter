@@ -11,6 +11,7 @@
             "ChannelSettings.ReadWrite.All",
             "CloudPC.ReadWrite.All",
             "Device.Read.All",
+            "DeviceLocalCredential.Read.All",
             "DeviceManagementConfiguration.ReadWrite.All",
             "DeviceManagementManagedDevices.PrivilegedOperations.All",
             "DeviceManagementManagedDevices.ReadWrite.All",
