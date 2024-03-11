@@ -7,12 +7,11 @@
             "DeviceManagementApps.ReadWrite.All",
             "DeviceManagementConfiguration.ReadWrite.All",
             "DeviceManagementServiceConfig.ReadWrite.All",
-            "Directory.ReadWrite.All",
+            "Domain.Read.All",
             "Group.ReadWrite.All",
-            "Organization.Read.All",
             "Policy.Read.All",
             "Policy.ReadWrite.ConditionalAccess",
-            "User.ReadWrite.All"
+            "User.Read.All"
         ]
     }
 ]
