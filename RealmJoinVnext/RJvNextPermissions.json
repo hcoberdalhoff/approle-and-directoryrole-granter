@@ -12,6 +12,7 @@
             "CloudPC.ReadWrite.All",
             "Device.Read.All",
             "DeviceLocalCredential.Read.All",
+            "DeviceManagementApps.ReadWrite.All",
             "DeviceManagementConfiguration.ReadWrite.All",
             "DeviceManagementManagedDevices.PrivilegedOperations.All",
             "DeviceManagementManagedDevices.ReadWrite.All",
