@@ -31,7 +31,8 @@
             "Team.Create",
             "TeamSettings.ReadWrite.All",
             "User.ReadWrite.All",
-            "UserAuthenticationMethod.ReadWrite.All"
+            "UserAuthenticationMethod.ReadWrite.All",
+            "WindowsUpdates.ReadWrite.All"
         ]
     },
     {
