@@ -11,6 +11,7 @@
             "Group.ReadWrite.All",
             "Policy.Read.All",
             "Policy.ReadWrite.ConditionalAccess",
+            "Policy.ReadWrite.DeviceConfiguration",
             "User.Read.All",
             "CloudPC.ReadWrite.All"
         ]
