@@ -4,6 +4,7 @@
         "Id": "00000003-0000-0000-c000-000000000000",
         "AppRoleAssignments": [
             "Application.ReadWrite.All",
+            "AdministrativeUnit.ReadWrite.All",
             "DeviceManagementApps.ReadWrite.All",
             "DeviceManagementConfiguration.ReadWrite.All",
             "DeviceManagementServiceConfig.ReadWrite.All",
