@@ -11,6 +11,7 @@
             "Domain.Read.All",
             "Group.ReadWrite.All",
             "Policy.Read.All",
+            "Policy.ReadWrite.AuthenticationMethod",
             "Policy.ReadWrite.ConditionalAccess",
             "Policy.ReadWrite.DeviceConfiguration",
             "User.Read.All",
