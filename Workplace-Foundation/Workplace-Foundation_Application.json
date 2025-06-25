@@ -16,7 +16,8 @@
             "Policy.ReadWrite.ConditionalAccess",
             "Policy.ReadWrite.DeviceConfiguration",
             "User.Read.All",
-            "CloudPC.ReadWrite.All"
+            "CloudPC.ReadWrite.All",
+            "SharePointTenantSettings.ReadWrite.All"
         ]
     }
 ]
