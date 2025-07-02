@@ -10,6 +10,7 @@
             "DeviceManagementServiceConfig.ReadWrite.All",
             "Domain.Read.All",
             "Group.ReadWrite.All",
+            "LicenseAssignment.ReadWrite.All",
             "Policy.Read.All",
             "Policy.ReadWrite.Authorization",
             "Policy.ReadWrite.AuthenticationMethod",
