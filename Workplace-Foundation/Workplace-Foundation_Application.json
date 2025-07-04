@@ -8,6 +8,7 @@
             "DeviceManagementApps.ReadWrite.All",
             "DeviceManagementConfiguration.ReadWrite.All",
             "DeviceManagementServiceConfig.ReadWrite.All",
+            "DeviceManagementScripts.ReadWrite.All",
             "Domain.Read.All",
             "Group.ReadWrite.All",
             "LicenseAssignment.ReadWrite.All",
