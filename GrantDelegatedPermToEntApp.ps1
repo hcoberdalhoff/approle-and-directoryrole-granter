@@ -22,8 +22,9 @@ foreach ($permission in $permissions) {
     $grant = $null
     $resourceSpn = Get-MgServicePrincipal -Filter "AppId eq '$($permission.Id)'" 
     if ($resourceSpn) {
-        $grant = $grants | Where-Object { $resourceSpn.id -eq $_.ResourceId }
-    } else {
+        $grant = $grants | Where-Object { ($resourceSpn.id -eq $_.ResourceId) -and ($_.ConsentType -eq "AllPrincipals") }
+    }
+    else {
         $resourceSpn = New-MgServicePrincipal -AppId $permission.Id
     }
     $scopeString = ""; foreach ($scope in $permission.Oauth2PermissionGrant) { $scopeString += "$scope " }
@@ -34,7 +35,8 @@ foreach ($permission in $permissions) {
             Scope      = $scopeString
         }
         Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/oauth2PermissionGrants/$($grant.Id)" -Body $body
-    } else {
+    }
+    else {
         $body = @{
             ClientId    = $spn.Id
             ConsentType = "AllPrincipals"
