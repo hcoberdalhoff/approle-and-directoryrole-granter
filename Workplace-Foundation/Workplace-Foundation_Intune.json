@@ -1,0 +1,16 @@
+[
+    {
+        "Name": "Microsoft Graph",
+        "Id": "00000003-0000-0000-c000-000000000000",
+        "AppRoleAssignments": [
+            "AdministrativeUnit.ReadWrite.All" # if Admin Units in use,
+            "CloudPC.ReadWrite.All" # if Windows 365 in use,
+            "DeviceManagementApps.ReadWrite.All",
+            "DeviceManagementConfiguration.ReadWrite.All",
+            "DeviceManagementScripts.ReadWrite.All",
+            "DeviceManagementServiceConfig.ReadWrite.All",
+            "Domain.Read.All",
+            "Group.ReadWrite.All"
+        ]
+    }
+]
