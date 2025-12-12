@@ -4,22 +4,26 @@
         "Id": "00000003-0000-0000-c000-000000000000",
         "AppRoleAssignments": [
             "AdministrativeUnit.ReadWrite.All",
-            "CloudPC.ReadWrite.All",
             "Application.ReadWrite.All",
+            "CloudPC.ReadWrite.All",
             "DeviceManagementApps.ReadWrite.All",
             "DeviceManagementConfiguration.ReadWrite.All",
-            "DeviceManagementServiceConfig.ReadWrite.All",
             "DeviceManagementScripts.ReadWrite.All",
+            "DeviceManagementServiceConfig.ReadWrite.All",
+            "EntitlementManagement.ReadWrite.All",
             "Domain.Read.All",
             "Group.ReadWrite.All",
             "LicenseAssignment.ReadWrite.All",
             "Policy.Read.All",
-            "Policy.ReadWrite.Authorization",
             "Policy.ReadWrite.AuthenticationMethod",
+            "Policy.ReadWrite.Authorization",
             "Policy.ReadWrite.ConditionalAccess",
+            "Policy.ReadWrite.CrossTenantAccess",
             "Policy.ReadWrite.DeviceConfiguration",
-            "User.Read.All",
-            "SharePointTenantSettings.ReadWrite.All"
+            "Policy.ReadWrite.ExternalIdentities",
+            "RoleManagement.ReadWrite.Directory",
+            "SharePointTenantSettings.ReadWrite.All",
+            "User.Read.All"
         ]
     }
 ]
